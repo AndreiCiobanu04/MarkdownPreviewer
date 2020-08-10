@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState}  from 'react';
+import Editor from './components/editor';
+import Previewer from './components/previewer';
+import marked from 'marked'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialState = `
+This is a paragraph
+ # Heading
+ ## Heading 2
+ **bold**
+ > salut
+ - list item 1
+ - list item 2
+ - list item 3
+  [visit this website](https://www.youtube.com/?gl=RO&hl=ro)
+this is an inline \`<div></div>\`
+
+this is a block of code
+\`\`\`
+let x=1;
+\`\`\`
+
+![React](https://reactjs.org/)
+`
+
+
+
+const App = () => 
+{
+  
+const [text, setText] = useState(initialState);
+//console.log(text);
+
+return (
+<>
+<Editor setText={setText} text={text} />
+<Previewer text={text} />
+</>
+)
 }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default App;
